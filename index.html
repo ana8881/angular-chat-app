@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Chat App</title>
+
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+	<body>
+		<div class="container" ng-app="chatApp" ng-controller="chatCtrl">
+			<header class="app-header">
+				<h1 class="app-title">Angular Chat App</h1>
+			</header>
+
+			<section class="app-body">
+				<section>
+					<p><a href="" ng-click="clearMessages()">Remove all mesagges</a></p>
+				</section>
+
+				<ul class="unstyled">
+					<li ng-repeat="mesaj in a track by $index">
+						<span class="">{{ mesaj }}</span>
+					</li>
+				</ul>
+
+				<form ng-submit="" class="todo-form">
+					<input type="text" ng-model="mesaj" placeholder="Enter a new message" required />
+					<button type="submit" ng-click="save(mesaj)">Send</button>
+				</form>
+			</section>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+
+		<script>
+			/*angular.element(document).ready(function () {
+
+				var messages = [];
+				messages.push(JSON.parse(localStorage.getItem('user1')));
+				localStorage.setItem('user1', JSON.stringify(messages));
+
+			});
+*/
+			var app = angular.module('chatApp', []);
+			app.controller('chatCtrl', function ($scope) {
+				$scope.clearMessages = function () {
+					localStorage.clear();
+				}
+				$scope.a = [];
+				//var z = document.getElementById("mesaj");
+				$scope.save = function (z) {
+					
+					$scope.a.push(z);
+					console.log($scope.a);
+
+					var msg = JSON.stringify($scope.a);
+					localStorage.setItem("user", msg);
+
+
+
+
+
+					var msgparsed = localStorage.getItem("user");
+
+			
+
+
+
+
+
+
+					// localStorage.setItem('a', z);
+					// Parse the serialized data back into an aray of objects
+					//a = JSON.parse(localStorage.getItem('user1'));
+					// Push the new data (whether it be an object or anything else) onto the array
+					//a.push(z);
+					// Should be something like [Object array]
+					// Re-serialize the array back into a string and store it in localStorage
+					//localStorage.setItem('user1', JSON.stringify(a));
+					//document.getElementById("mesaj").value = "";
+				}
+				
+
+			});
+		</script>
+
+
+	</body>
+
+</html>
